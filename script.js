@@ -51,15 +51,14 @@ const deepWay = (object) => {
 
 console.log(deepWay (cave1));
 
-let res = 0;
 
-const noСoincidence = (object1, object2) => {
+const noСoincidence = (object1, object2, res = 0) => {
     for (const key in object1) {
         if (object1.hasOwnProperty(key)) {
             const element1 = object1[key];
             const element2 = object2[key];
             if(element1 !== null && typeof element1 === 'object') {
-                noСoincidence(element1, element2);
+                noСoincidence(element1, element2, res);
             } else if (element1 != object2[key]) {
                 res++;
             }
