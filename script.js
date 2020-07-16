@@ -1,68 +1,153 @@
-const sum = (a, b) => a + b;
+// const cave1 = {
+//     a: {
+//         a: 1,
+//         b: 2,
+//         c: {
+//             a: 1,
+//             c: {
+//                 a: 1,
+//                 b: {
+//                     h: 1,
+//                 },
+//             },
+//         },
+//     },
+//     d: 34,
+//     b: {
+//         a: false,
+//         b: false,
+//     },
+//     c: {
+//         a: false,
+//         b: false,
+//         a: {
+//             a: 1,
+//             b: 2,
+//             c: {
+//                 a: 1,
+//                 c: {
+//                     a: 1,
+//                     b: {
+//                         h: 1,
+//                     },
+//                 },
+//             },
+//         },
+//     },
+// }
 
-let topPC = {
-    RAM: 32,
-    GC: 'RTX 2080',
-    CPU: 'i7 8700k',
-    power: 1000,
-    a: {
+// const cave2 = {
+//     a: {
+//         a: 1,
+//         b: 2,
+//         c: {
+//             a: 1,
+//             c: {
+//                 a: 1,
+//                 b: {
+//                     h: 1,
+//                 },
+//             },
+//         },
+//     },
+//     d: 34,
+//     b: {
+//         a: false,
+//         b: false,
+//     },
+//     c: {
+//         a: false,
+//         b: false,
+//         a: {
+//             a: 1,
+//             b: 2,
+//             c: {
+//                 a: 1,
+//                 c: {
+//                     a: 1,
+//                     b: {
+//                         h: 1,
+//                     },
+//                 },
+//             },
+//         },
+//     },
+// }
+
+
+
+const cave1 = {
+    a: 1,
+    b: 2,
+    c: {
+        a: 2,
         b: 2,
-        t: 3,
-    }
-}
-
-let topPC2 = {};
-
-function createCopy(newObj, obj) {
-
-    for (let key in obj) {
-        newObj[key] = obj[key];
-    }
-    return console.log(newObj);
-}
-
-createCopy(topPC2, topPC);
-const copy = (object) => {
-    const newObj = {};
-    for (const key in object) {
-        if (object.hasOwnProperty(key)) {
-            const element = object[key];
-            newObj[key] = element;
-        }
-    }
-    return newObj;
-};
-
-
-const cave = {
-    a: {
-        a: 1,
-        b: false,
+        e: {
+            a:3,
+            // b:2,
+        },
     },
-    b: {
-        a: false,
-        b: false,
-    },
+    b: 3,
+    m: 3,
 }
 
-const deepCopy = (object) => {
-    const newObj = {};
-    for (const key in object) {
+const cave2 = {
+    a: 2,
+    b: 2,
+    c: {
+        a: 2,
+        b: 2,
+        e: {
+            a:3,
+        },
+    },
+    b: 3,
+    m: 3,
+}
+
+let id = 0;
+let max = 1;
+
+
+const deepWay = (object) => {
+    
+    // let id = 0;
+    for (const key in object) { 
         if (object.hasOwnProperty(key)) {
             const element = object[key];
             if(element !== null && typeof element === 'object') {
-                newObj[key] = deepCopy(element)
-            } else
-            newObj[key] = element;
+                id++;
+                deepWay(element);
+                // console.log(id);
+                if (max <= id ) {
+                    max = id;
+                }
+                // console.log(max);
+                id = 0;
+            } 
         }
-    }
-    return newObj;
+        // if (max < id) max = id;
+    }   
+    return max;
 }
 
-const newCave = copy(cave);
+console.log(deepWay (cave1));
 
-cave.a.a = 'abc';
+let res = 0;
 
-console.log(newCave.a.a === cave.a.a);
+const noСoincidence = (object1, object2) => {
+    for (const key in object1) {
+        if (object1.hasOwnProperty(key)) {
+            const element1 = object1[key];
+            const element2 = object2[key];
+            if(element1 !== null && typeof element1 === 'object') {
+                noСoincidence(element1, element2);
+            } else if (element1 != object2[key]) {
+                res++;
+            }
+        }
+}   
+    return res;
+}
 
-// console.log(newCave, cave);
+console.log(noСoincidence(cave1, cave2));
