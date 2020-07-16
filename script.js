@@ -33,22 +33,18 @@ let max = 1;
 
 const deepWay = (object) => {
     
-    // let id = 0;
     for (const key in object) { 
         if (object.hasOwnProperty(key)) {
             const element = object[key];
             if(element !== null && typeof element === 'object') {
                 id++;
                 deepWay(element);
-                // console.log(id);
                 if (max <= id ) {
                     max = id;
                 }
-                // console.log(max);
                 id = 0;
             } 
         }
-        // if (max < id) max = id;
     }   
     return max;
 }
