@@ -6,7 +6,15 @@ describe('funcrions', () => {
     });
     describe('noCoincidence', () => {
         it('should show no coincidence', () => {
-            expect(noСoincidence(cave1, cave2)).to.equal(1);
+            const a = {
+                f: 3,
+                g: 4,
+            };
+            const b = {
+                f: 4,
+                g: 3,
+            };
+            expect(noСoincidence(a, b)).to.equal(2);
         });
     });
 })    

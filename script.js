@@ -1,11 +1,11 @@
 const cave1 = {
-    a: 1,
+    a: 2,
     b: 2,
     c: {
-        a: 2,
-        b: 2,
+        a: 1,
+        b: 1,
         e: {
-            a:3,
+            a:2,
             // b:2,
         },
     },
@@ -14,7 +14,7 @@ const cave1 = {
 }
 
 const cave2 = {
-    a: 2,
+    a: 1,
     b: 2,
     c: {
         a: 2,
@@ -51,7 +51,9 @@ const deepWay = (object) => {
 
 console.log(deepWay (cave1));
 
-let res = 0;
+
+
+ let res = 0;
 
 const noСoincidence = (object1, object2) => {
     for (const key in object1) {
@@ -60,12 +62,17 @@ const noСoincidence = (object1, object2) => {
             const element2 = object2[key];
             if(element1 !== null && typeof element1 === 'object') {
                 noСoincidence(element1, element2);
-            } else if (element1 != object2[key]) {
+            } else if (element1 != element2) {
                 res++;
-            }
-        }
-}   
+            };
+        };
+    };
     return res;
 }
 
-console.log(noСoincidence(cave1, cave2));
+const result = () => {
+    console.log(noСoincidence(cave1, cave2));
+    res = 0;
+}
+
+result();
