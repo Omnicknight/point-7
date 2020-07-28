@@ -4,7 +4,7 @@ describe('funcrions', () => {
             expect(deepWay(cave1)).to.equal(2);
         });
     });
-    describe('noCoincidence', () => {
+    describe('result', () => {
         it('should show no coincidence', () => {
             const a = {
                 f: 3,
@@ -14,7 +14,7 @@ describe('funcrions', () => {
                 f: 4,
                 g: 3,
             };
-            expect(noСoincidence(a, b)).to.equal(2);
+            expect(result(cave1, cave2)).to.equal(4);
         });
     });
 })    
