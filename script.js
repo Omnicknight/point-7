@@ -27,68 +27,38 @@ const cave2 = {
     m: 3,
 }
 
-let id = 0;
-let max = 1;
+// let id = 0;
+// let max = 1;
 
-
-const deepWay = (object) => {
+const results = (first) => {
+    let id = 0;
+    let max = 1;
+    const deepWay = (object) => {
     
-    for (const key in object) { 
-        if (object.hasOwnProperty(key)) {
-            const element = object[key];
-            if(element !== null && typeof element === 'object') {
-                id++;
-                deepWay(element);
-                if (max <= id ) {
-                    max = id;
-                }
-                id = 0;
-            } 
-        }
-    }   
+        for (const key in object) { 
+            if (object.hasOwnProperty(key)) {
+                const element = object[key];
+                if(element !== null && typeof element === 'object') {
+                    id++;
+                    // console.log(id);
+                    deepWay(element);
+                    if (max <= id ) {
+                        max = id;
+                    }
+                    // id = 0;
+                } 
+            }
+        }   
+        return max;
+    }
+    deepWay(first);
     return max;
 }
 
-console.log(deepWay (cave1));
 
 
+console.log(results (cave1));
 
-//  let res = 0;
-
-// const noСoincidence = (object1, object2) => {
-//     for (const key in object1) {
-//         if (object1.hasOwnProperty(key)) {
-//             const element1 = object1[key];
-//             const element2 = object2[key];
-//             if(element1 !== null && typeof element1 === 'object') {
-//                 noСoincidence(element1, element2);
-//             } else if (element1 != element2) {
-//                 res++;
-//             };
-//         };
-//     };
-//     return res;
-// }
-
-// const result = () => {
-//     console.log(noСoincidence(cave1, cave2));
-//     res = 0;
-// }
-
-const noСoincidence = (object1, object2) => {
-    for (const key in object1) {
-        if (object1.hasOwnProperty(key)) {
-            const element1 = object1[key];
-            const element2 = object2[key];
-            if(element1 !== null && typeof element1 === 'object') {
-                noСoincidence(element1, element2);
-            } else if (element1 != element2) {
-                res++;
-            };
-        };
-    };
-    return res;
-}
 
 const result = (first, second) => {
     let res = 0;
@@ -108,8 +78,8 @@ const result = (first, second) => {
         return res;
     }
     noСoincidence(first, second);
-    console.log(res);
+    // console.log(res);
     return res;
 }
 
-result(cave1, cave2);
+console.log(result(cave1, cave2));

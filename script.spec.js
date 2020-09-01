@@ -1,7 +1,7 @@
 describe('funcrions', () => {
-    describe('deepWay', () => {
+    describe('results', () => {
         it('should show deepest way', () => {
-            expect(deepWay(cave1)).to.equal(2);
+            expect(results(cave1)).to.equal(2);
         });
     });
     describe('result', () => {
